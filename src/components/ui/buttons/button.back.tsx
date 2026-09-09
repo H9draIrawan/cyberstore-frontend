@@ -4,14 +4,7 @@ import { useNavigate } from "react-router-dom";
 function ButtonBack() {
 	const navigate = useNavigate();
 	return (
-		<button
-			onClick={() =>
-				navigate("/app", {
-					replace: true,
-				})
-			}
-			type="button"
-		>
+		<button onClick={() => navigate("/app", { replace: true })} type="button">
 			<IoMdArrowRoundBack className="text-4xl" />
 		</button>
 	);
