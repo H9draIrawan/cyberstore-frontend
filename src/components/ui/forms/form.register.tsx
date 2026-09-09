@@ -9,7 +9,7 @@ function FormRegister() {
 	return (
 		<form className="grid grid-cols-1 gap-4 text-2xl border-2 rounded-2xl p-7 bg-white">
 			<ButtonBack />
-			<h1 className="my-7 text-center font-bold uppercase text-4xl">
+			<h1 className="py-7 text-center font-bold uppercase text-4xl">
 				Register
 			</h1>
 			<input

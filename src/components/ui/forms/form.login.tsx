@@ -9,7 +9,7 @@ function FormLogin() {
 	return (
 		<form className="grid grid-cols-1 gap-4 text-2xl border-2 rounded-2xl p-7 bg-white">
 			<ButtonBack />
-			<h1 className="my-7 text-center font-bold uppercase text-4xl">Login</h1>
+			<h1 className="py-7 text-center font-bold uppercase text-4xl">Login</h1>
 			<input
 				className="min-h-full border-2 p-2 rounded-xl"
 				type="email"
