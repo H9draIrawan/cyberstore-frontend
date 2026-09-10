@@ -7,9 +7,9 @@ function Navbar() {
 	const [activeMenu, setActiveMenu] = useState("home");
 
 	return (
-		<nav className="container mx-auto flex items-center py-2 sticky">
+		<nav className="container mx-auto flex items-center py-2 bg-white">
 			<div className="flex flex-1 justify-center">
-				<img src="/src/assets/images/logo.png" alt="logo" width={75} />
+				<img src="/src/assets/logo.png" alt="logo" width={75} />
 			</div>
 			<div className="flex flex-2">
 				<form className="flex w-full items-center rounded-full border border-gray-300 bg-white px-4 py-2 shadow-sm gap-3">

@@ -6,16 +6,14 @@ import Footer from "../components/layout/Footer";
 function App() {
 	return (
 		<>
-			<header>
+			<header className="sticky top-0 z-50">
 				<Navbar />
 			</header>
 			<main>
 				<HeroSection />
 				<Content />
 			</main>
-			<footer>
-				<Footer />
-			</footer>
+			<footer>{/* <Footer /> */}</footer>
 		</>
 	);
 }
