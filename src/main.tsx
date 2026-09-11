@@ -6,18 +6,23 @@ import {
 	RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import App from "./pages/App";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Product from "./pages/Product";
 
 const router = createBrowserRouter([
 	{
 		index: true,
-		element: <Navigate to={"/app"} />,
+		element: <Navigate to={"/home"} />,
 	},
 	{
-		path: "/app",
-		element: <App />,
+		path: "/home",
+		element: <Home />,
+	},
+	{
+		path: "/product",
+		element: <Product />,
 	},
 	{
 		path: "/login",

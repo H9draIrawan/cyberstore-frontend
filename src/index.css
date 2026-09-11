@@ -17,3 +17,8 @@ header {
 main {
 	background-image: linear-gradient(to right, #e34234, #008080);
 }
+
+footer {
+	background-color: black;
+	color: white;
+}

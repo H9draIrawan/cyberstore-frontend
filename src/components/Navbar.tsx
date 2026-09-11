@@ -1,14 +1,31 @@
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
-import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
-	const [activeMenu, setActiveMenu] = useState("home");
+	const navItems = [
+		{
+			label: "Home",
+			path: "/home",
+		},
+		{
+			label: "Product",
+			path: "/product",
+		},
+		{
+			label: "Contact",
+			path: "/contact",
+		},
+		{
+			label: "Blog",
+			path: "/blog",
+		},
+	];
 
 	return (
 		<nav className="container flex items-center py-2">
-			<div className="flex flex-2 justify-around">
+			<div className="flex flex-1 justify-around">
 				<img src="/src/assets/logo.png" alt="logo" width={75} />
 			</div>
 			<div className="flex flex-3">
@@ -23,38 +40,18 @@ function Navbar() {
 			</div>
 			<div className="flex-3 font-sans text-xl">
 				<ul className="flex justify-around">
-					<li>
-						<a
-							className={`${activeMenu == "home" ? "font-bold" : "opacity-50"} hover:opacity-100`}
-							onClick={() => setActiveMenu("home")}
-						>
-							Home
-						</a>
-					</li>
-					<li>
-						<a
-							className={`${activeMenu == "about" ? "font-bold" : "opacity-50"} hover:opacity-100`}
-							onClick={() => setActiveMenu("about")}
-						>
-							About
-						</a>
-					</li>
-					<li>
-						<a
-							className={`${activeMenu == "contact" ? "font-bold" : "opacity-50"} hover:opacity-100`}
-							onClick={() => setActiveMenu("contact")}
-						>
-							Contact
-						</a>
-					</li>
-					<li>
-						<a
-							className={`${activeMenu == "blog" ? "font-bold" : "opacity-50"} hover:opacity-100`}
-							onClick={() => setActiveMenu("blog")}
-						>
-							Blog
-						</a>
-					</li>
+					{navItems.map((item) => (
+						<li>
+							<NavLink
+								className={({ isActive }) =>
+									isActive ? "font-bold" : "opacity-50 hover:opacity-100"
+								}
+								to={`${item.path}`}
+							>
+								{item.label}
+							</NavLink>
+						</li>
+					))}
 				</ul>
 			</div>
 			<div className="flex flex-2 justify-center gap-15">

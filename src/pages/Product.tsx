@@ -1,17 +1,17 @@
 import Navbar from "../components/Navbar";
-import HomeLayout from "../layouts/Home.Layout";
+import ProductLayout from "../layouts/Product.Layout";
 
-function App() {
+function Product() {
 	return (
 		<>
 			<header>
 				<Navbar />
 			</header>
 			<main>
-				<HomeLayout />
+				<ProductLayout />
 			</main>
 		</>
 	);
 }
 
-export default App;
+export default Product;
