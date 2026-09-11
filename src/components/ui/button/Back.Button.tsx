@@ -1,7 +1,7 @@
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
-function ButtonBack() {
+function BackButton() {
 	const navigate = useNavigate();
 	return (
 		<button onClick={() => navigate("/app", { replace: true })} type="button">
@@ -10,4 +10,4 @@ function ButtonBack() {
 	);
 }
 
-export default ButtonBack;
+export default BackButton;

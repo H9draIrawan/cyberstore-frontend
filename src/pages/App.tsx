@@ -1,19 +1,15 @@
-import Navbar from "../components/layout/Navbar";
-import HeroSection from "../components/layout/HeroSection";
-import Content from "../components/layout/Content";
-import Footer from "../components/layout/Footer";
+import Navbar from "../components/Navbar";
+import HomeLayout from "../layouts/Home.Layout";
 
 function App() {
 	return (
 		<>
-			<header className="sticky top-0 z-50">
+			<header>
 				<Navbar />
 			</header>
 			<main>
-				<HeroSection />
-				<Content />
+				<HomeLayout />
 			</main>
-			<footer>{/* <Footer /> */}</footer>
 		</>
 	);
 }

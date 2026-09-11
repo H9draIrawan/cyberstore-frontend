@@ -4,3 +4,16 @@ body {
 	padding: 0;
 	margin: 0;
 }
+
+header {
+	background-color: whitesmoke;
+	position: sticky;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+}
+
+main {
+	background-image: linear-gradient(to right, #e34234, #008080);
+}

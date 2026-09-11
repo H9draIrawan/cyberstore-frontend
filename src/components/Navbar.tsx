@@ -7,11 +7,11 @@ function Navbar() {
 	const [activeMenu, setActiveMenu] = useState("home");
 
 	return (
-		<nav className="container mx-auto flex items-center py-2 bg-white">
-			<div className="flex flex-1 justify-center">
+		<nav className="container flex items-center py-2">
+			<div className="flex flex-2 justify-around">
 				<img src="/src/assets/logo.png" alt="logo" width={75} />
 			</div>
-			<div className="flex flex-2">
+			<div className="flex flex-3">
 				<form className="flex w-full items-center rounded-full border border-gray-300 bg-white px-4 py-2 shadow-sm gap-3">
 					<IoSearch className="text-4xl" />
 					<input
@@ -27,7 +27,6 @@ function Navbar() {
 						<a
 							className={`${activeMenu == "home" ? "font-bold" : "opacity-50"} hover:opacity-100`}
 							onClick={() => setActiveMenu("home")}
-							href={"#home"}
 						>
 							Home
 						</a>
@@ -36,7 +35,6 @@ function Navbar() {
 						<a
 							className={`${activeMenu == "about" ? "font-bold" : "opacity-50"} hover:opacity-100`}
 							onClick={() => setActiveMenu("about")}
-							href={"#about"}
 						>
 							About
 						</a>
@@ -45,7 +43,6 @@ function Navbar() {
 						<a
 							className={`${activeMenu == "contact" ? "font-bold" : "opacity-50"} hover:opacity-100`}
 							onClick={() => setActiveMenu("contact")}
-							href={"#contact"}
 						>
 							Contact
 						</a>
@@ -54,7 +51,6 @@ function Navbar() {
 						<a
 							className={`${activeMenu == "blog" ? "font-bold" : "opacity-50"} hover:opacity-100`}
 							onClick={() => setActiveMenu("blog")}
-							href={"#blog"}
 						>
 							Blog
 						</a>
