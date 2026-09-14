@@ -1,9 +1,9 @@
-import React from "react";
-
 function ProductLayout() {
-	return <main>
-        
-    </main>;
+	return (
+		<>
+			
+		</>
+	);
 }
 
 export default ProductLayout;

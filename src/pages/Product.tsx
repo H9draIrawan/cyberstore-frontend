@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import ProductLayout from "../layouts/Product.Layout";
 
@@ -10,6 +11,7 @@ function Product() {
 			<main>
 				<ProductLayout />
 			</main>
+			<Footer />
 		</>
 	);
 }
