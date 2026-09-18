@@ -10,6 +10,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Product from "./pages/Product";
+import Contact from "./pages/Contact";
+import Blog from "./pages/Blog";
 
 const router = createBrowserRouter([
 	{
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
 	{
 		path: "/register",
 		element: <Register />,
+	},
+	{
+		path: "/contact",
+		element: <Contact />,
+	},
+	{
+		path: "/blog",
+		element: <Blog />,
 	},
 ]);
 createRoot(document.getElementById("root")!).render(

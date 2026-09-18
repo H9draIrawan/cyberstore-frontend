@@ -34,7 +34,7 @@ function HomeLayout() {
 					/>
 					<div className="absolute inset-0 flex bg-linear-to-b from-black/60 to-transparent p-4">
 						<span className="text-4xl font-semibold text-white">
-							PlayStation
+							Playstation
 						</span>
 					</div>
 				</div>
