@@ -1,15 +1,31 @@
 import Header from "../components/Header";
 import BackButton from "../components/ui/button/Back.Button";
 import SubmitButton from "../components/ui/button/Submit.Button";
-import AuthLayout from "../layouts/Auth.Layout";
+import AuthLayout, { type AuthAction } from "../layouts/Auth.Layout";
 import { useNavigate } from "react-router-dom";
+import { login } from "../services/Auth.Service";
+
+const loginAction: AuthAction = async (_previousState, formData) => {
+	const email = formData.get("email") as string;
+	const password = formData.get("password") as string;
+	const rememberMe = formData.get("rememberMe") === "rememberMe";
+
+	try {
+		await login(email, password, rememberMe);
+		return { success: true, error: null };
+	} catch (error) {
+		const message =
+			error instanceof Error ? error.message : "Internal server error";
+		return { success: false, error: message };
+	}
+};
 
 function Login() {
 	const navigate = useNavigate();
 	return (
 		<>
 			<Header />
-			<AuthLayout>
+			<AuthLayout action={loginAction}>
 				<BackButton />
 				<h1 className="py-7 text-center font-bold uppercase text-4xl">Login</h1>
 				<input
@@ -25,7 +41,12 @@ function Login() {
 					placeholder="password"
 				/>
 				<label className="flex items-center gap-2 text-lg">
-					<input type="checkbox" name="rememberMe" className="size-4" />
+					<input
+						type="checkbox"
+						name="rememberMe"
+						value={"rememberMe"}
+						className="size-4"
+					/>
 					Remember me
 				</label>
 				<SubmitButton>Login</SubmitButton>
