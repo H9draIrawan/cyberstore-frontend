@@ -25,11 +25,17 @@ const login = async (
 	password: string,
 	isRememberMe: boolean,
 ) => {
-	const res = await api.post("/api/v1/auth/login", {
-		email: email,
-		password: password,
-		isRememberMe: isRememberMe,
-	});
+	const res = await api.post(
+		"/api/v1/auth/login",
+		{
+			email: email,
+			password: password,
+			isRememberMe: isRememberMe,
+		},
+		{
+			withCredentials: true,
+		},
+	);
 	return res.data;
 };
 
