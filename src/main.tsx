@@ -10,8 +10,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Product from "./pages/Product";
-import Contact from "./pages/Contact";
-import Blog from "./pages/Blog";
+import Shop from "./pages/Shop";
 import { AuthProvider } from "./contexts/Auth.Provider";
 
 const router = createBrowserRouter([
@@ -36,12 +35,8 @@ const router = createBrowserRouter([
 		element: <Register />,
 	},
 	{
-		path: "/contact",
-		element: <Contact />,
-	},
-	{
-		path: "/blog",
-		element: <Blog />,
+		path: "/shop",
+		element: <Shop />,
 	},
 ]);
 createRoot(document.getElementById("root")!).render(

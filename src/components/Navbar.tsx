@@ -13,40 +13,42 @@ function Navbar() {
 			path: "/product",
 		},
 		{
-			label: "Contact",
-			path: "/contact",
+			label: "Shop",
+			path: "/shop",
 		},
 		{
-			label: "Blog",
-			path: "/blog",
+			label: "Dashboard",
+			path: "/dashboard",
 		},
 	];
 
 	return (
-		<nav className="mx-auto flex items-center py-4">
-			<div className="flex flex-auto justify-start ps-7">
-				<img src="/src/assets/logo.png" alt="logo" width={75} />
-			</div>
-			<div className="flex-auto font-sans text-2xl">
-				<ul className="flex justify-around ">
-					{navItems.map((item) => (
-						<li>
-							<NavLink
-								className={({ isActive }) =>
-									isActive ? "font-bold" : "opacity-50 hover:opacity-100"
-								}
-								to={`${item.path}`}
-							>
-								{item.label}
-							</NavLink>
-						</li>
-					))}
-				</ul>
-			</div>
-			<div className="flex flex-auto justify-end pe-7 gap-15">
-				<MdFavorite className="text-4xl" />
-				<FaShoppingCart className="text-4xl" />
-				<FaUser className="text-4xl" />
+		<nav className="w-full border-b border-slate-200 bg-white px-4 py-3 shadow-sm sm:px-8">
+			<div className="mx-auto flex h-16 items-center gap-6">
+				<NavLink to="/home" className="shrink-0">
+					<img src="/src/assets/logo.png" alt="Logo" width={75} />
+				</NavLink>
+				<div className="flex-1 font-sans text-2xl">
+					<ul className="flex justify-around">
+						{navItems.map((item) => (
+							<li>
+								<NavLink
+									className={({ isActive }) =>
+										isActive ? "font-bold" : "opacity-50 hover:opacity-100"
+									}
+									to={`${item.path}`}
+								>
+									{item.label}
+								</NavLink>
+							</li>
+						))}
+					</ul>
+				</div>
+				<div className="flex flex-1 justify-end gap-6">
+					<MdFavorite className="text-4xl" />
+					<FaShoppingCart className="text-4xl" />
+					<FaUser className="text-4xl" />
+				</div>
 			</div>
 		</nav>
 	);
