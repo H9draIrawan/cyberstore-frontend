@@ -2,7 +2,7 @@
 
 import { useActionState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getErrorMessage, register } from "../services/Auth.Service";
+import { getErrorMessage, registerUser } from "../services/Auth.Service";
 import SubmitButton from "../components/ui/button/Submit.Button";
 import BackButton from "../components/ui/button/Back.Button";
 
@@ -22,7 +22,7 @@ const registerAction: authAction = async (_previousState, formData) => {
 	const password = formData.get("password") as string;
 
 	try {
-		await register(username, email, password);
+		await registerUser(username, email, password);
 		return { success: true, error: null };
 	} catch (error) {
 		console.log(error);

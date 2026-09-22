@@ -12,6 +12,7 @@ import Register from "./pages/Register";
 import Product from "./pages/Product";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
+import { AuthProvider } from "./contexts/Auth.Provider";
 
 const router = createBrowserRouter([
 	{
@@ -45,8 +46,10 @@ const router = createBrowserRouter([
 ]);
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
-		<Suspense fallback={<div className="font-black">Loading...</div>}>
-			<RouterProvider router={router} />
-		</Suspense>
+		<AuthProvider>
+			<Suspense fallback={<div className="font-black">Loading...</div>}>
+				<RouterProvider router={router} />
+			</Suspense>
+		</AuthProvider>
 	</StrictMode>,
 );

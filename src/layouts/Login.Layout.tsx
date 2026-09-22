@@ -2,7 +2,8 @@
 
 import { useActionState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../services/Auth.Service";
+import { loginUser } from "../services/Auth.Service";
+import { useAuth } from "../contexts/Auth.Provider";
 import SubmitButton from "../components/ui/button/Submit.Button";
 import BackButton from "../components/ui/button/Back.Button";
 
@@ -22,7 +23,7 @@ const loginAction: authAction = async (_previousState, formData) => {
 	const rememberMe = formData.get("rememberMe") === "rememberMe";
 
 	try {
-		await login(email, password, rememberMe);
+		await loginUser(email, password, rememberMe);
 		return { success: true, error: null };
 	} catch (error) {
 		const message =
@@ -32,18 +33,26 @@ const loginAction: authAction = async (_previousState, formData) => {
 };
 
 function LoginLayout() {
+	const navigate = useNavigate();
+	const { refreshSession } = useAuth();
+
 	const [state, action] = useActionState(loginAction, {
 		success: false,
 		error: null,
 	});
 
-	const navigate = useNavigate();
-
 	useEffect(() => {
-		if (state.success) {
-			navigate("/login", { replace: true });
+		if (!state.success) {
+			return;
 		}
-	}, [state.success, navigate]);
+
+		const redirectAfterLogin = async () => {
+			await refreshSession();
+			navigate("/home", { replace: true });
+		};
+
+		void redirectAfterLogin();
+	}, [state.success, refreshSession, navigate]);
 
 	return (
 		<main className="flex min-h-screen items-center justify-center bg-black">

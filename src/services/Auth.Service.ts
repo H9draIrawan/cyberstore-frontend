@@ -20,7 +20,12 @@ const getErrorMessage = (error: unknown, fallback: string) => {
 	return fallback;
 };
 
-const login = async (
+const sessionUserNow = async () => {
+	const res = await api.get("/api/v1/auth/user", { withCredentials: true });
+	return res.data;
+};
+
+const loginUser = async (
 	email: string,
 	password: string,
 	isRememberMe: boolean,
@@ -39,7 +44,11 @@ const login = async (
 	return res.data;
 };
 
-const register = async (username: string, email: string, password: string) => {
+const registerUser = async (
+	username: string,
+	email: string,
+	password: string,
+) => {
 	const res = await api.post("/api/v1/auth/register", {
 		username: username,
 		email: email,
@@ -48,4 +57,9 @@ const register = async (username: string, email: string, password: string) => {
 	return res.data;
 };
 
-export { login, register, getErrorMessage };
+const logoutUser = async () => {
+	const res = await api.post("/api/v1/auth/logout");
+	return res.data;
+};
+
+export { sessionUserNow, loginUser, registerUser, logoutUser, getErrorMessage };
