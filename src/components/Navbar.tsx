@@ -28,8 +28,8 @@ function Navbar() {
 				<NavLink to="/home" className="shrink-0">
 					<img src="/src/assets/logo.png" alt="Logo" width={75} />
 				</NavLink>
-				<div className="flex-1 font-sans text-2xl">
-					<ul className="flex justify-around">
+				<div className="flex-1/2 font-sans text-2xl">
+					<ul className="flex justify-center gap-8">
 						{navItems.map((item) => (
 							<li>
 								<NavLink
@@ -44,7 +44,7 @@ function Navbar() {
 						))}
 					</ul>
 				</div>
-				<div className="flex flex-1 justify-end gap-6">
+				<div className="flex flex-1 justify-end gap-8">
 					<MdFavorite className="text-4xl" />
 					<FaShoppingCart className="text-4xl" />
 					<FaUser className="text-4xl" />
