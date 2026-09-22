@@ -1,12 +1,12 @@
 import { createContext, use, useEffect, useState, type ReactNode } from "react";
-import { sessionUserNow } from "../services/Auth.Service";
+import { logoutUser, sessionUserNow } from "../services/Auth.Service";
 
 interface AuthContextType {
 	userId: string | null;
 	isLoading: boolean;
 	login: (_id: string) => void;
 	logout: () => void;
-	refreshSession: () => Promise<void>;
+	reload: () => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -19,7 +19,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 		setUserId(_id);
 	};
 
-	const logout = () => {
+	const logout = async () => {
+		await logoutUser();
 		setUserId(null);
 	};
 
@@ -43,9 +44,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 	}
 
 	return (
-		<AuthContext
-			value={{ userId, isLoading, login, logout, refreshSession: reload }}
-		>
+		<AuthContext value={{ userId, isLoading, login, logout, reload }}>
 			{children}
 		</AuthContext>
 	);

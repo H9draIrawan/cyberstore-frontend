@@ -1,7 +1,4 @@
-import { useAuth } from "../contexts/Auth.Provider";
-
 function HomeLayout() {
-	const { userId } = useAuth();
 	return (
 		<>
 			<section className="mx-auto flex min-h-screen w-full flex-col items-center justify-center gap-12 overflow-hidden px-6 py-16 sm:px-10 lg:flex-row lg:gap-8 lg:px-16">
@@ -10,7 +7,6 @@ function HomeLayout() {
 						Pro Beyond
 					</p>
 					<h1 className="text-5xl font-bold leading-tight text-white sm:text-6xl lg:text-7xl">
-						{userId}
 						CyberStore
 					</h1>
 					<p className="mt-6 max-w-md text-lg leading-8 text-white opacity-75">

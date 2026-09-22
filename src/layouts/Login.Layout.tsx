@@ -34,7 +34,7 @@ const loginAction: authAction = async (_previousState, formData) => {
 
 function LoginLayout() {
 	const navigate = useNavigate();
-	const { refreshSession } = useAuth();
+	const { reload } = useAuth();
 
 	const [state, action] = useActionState(loginAction, {
 		success: false,
@@ -47,12 +47,12 @@ function LoginLayout() {
 		}
 
 		const redirectAfterLogin = async () => {
-			await refreshSession();
+			await reload();
 			navigate("/home", { replace: true });
 		};
 
 		void redirectAfterLogin();
-	}, [state.success, refreshSession, navigate]);
+	}, [state.success, reload, navigate]);
 
 	return (
 		<main className="flex min-h-screen items-center justify-center bg-black">
