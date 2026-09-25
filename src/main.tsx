@@ -12,6 +12,7 @@ import Register from "./pages/Register";
 import Product from "./pages/Product";
 import Shop from "./pages/Shop";
 import { AuthProvider } from "./contexts/Auth.Provider";
+import Dashboard from "./pages/Dashboard";
 
 const router = createBrowserRouter([
 	{
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
 	{
 		path: "/shop",
 		element: <Shop />,
+	},
+	{
+		path: "/dashboard",
+		element: <Dashboard />,
 	},
 ]);
 createRoot(document.getElementById("root")!).render(
