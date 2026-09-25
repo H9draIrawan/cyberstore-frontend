@@ -13,12 +13,8 @@ function Navbar() {
 			path: "/product",
 		},
 		{
-			label: "Contact",
-			path: "/contact",
-		},
-		{
-			label: "Blog",
-			path: "/blog",
+			label: "Dashboard",
+			path: "/dashboard",
 		},
 	];
 
