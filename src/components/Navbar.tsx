@@ -1,6 +1,7 @@
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../contexts/Auth.Provider";
 function Navbar() {
 	const navItems = [
 		{
@@ -21,7 +22,7 @@ function Navbar() {
 		},
 	];
 
-	const isLoggedIn = false;
+	const { user, logout } = useAuth();
 
 	return (
 		<nav className="w-full border-b border-slate-200 bg-white px-4 py-3 shadow-sm sm:px-8">
@@ -46,14 +47,16 @@ function Navbar() {
 					</ul>
 				</div>
 				<div className="flex flex-1 items-center justify-end gap-8">
-					{isLoggedIn ? (
+					{user ? (
 						<>
 							<MdFavorite className="text-4xl" />
 							<FaShoppingCart className="text-4xl" />
 							<FaUser className="text-4xl" />
+							{user.username}
 							<button
 								type="button"
 								className="rounded-full border border-slate-300 px-5 py-2 font-medium uppercase text-2xl text-white bg-red-500 transition hover:border-red-500 hover:bg-white hover:text-red-500"
+								onClick={logout}
 							>
 								Logout
 							</button>

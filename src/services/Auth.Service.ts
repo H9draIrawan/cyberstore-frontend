@@ -58,8 +58,7 @@ const registerUser = async (
 };
 
 const logoutUser = async () => {
-	const res = await api.post("/api/v1/auth/logout");
-	return res.data;
+	await api.post("/api/v1/auth/logout", {}, { withCredentials: true });
 };
 
 export { sessionUserNow, loginUser, registerUser, logoutUser, getErrorMessage };

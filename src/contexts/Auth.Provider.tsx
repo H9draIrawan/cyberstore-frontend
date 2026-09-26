@@ -1,10 +1,17 @@
 import { createContext, use, useEffect, useState, type ReactNode } from "react";
 import { logoutUser, sessionUserNow } from "../services/Auth.Service";
+import { getUser } from "../services/User.Service";
+
+interface AuthUser {
+	_id: string;
+	username: string;
+	email: string;
+	role: string;
+}
 
 interface AuthContextType {
-	userId: string | null;
+	user: AuthUser | null;
 	isLoading: boolean;
-	login: (_id: string) => void;
 	logout: () => void;
 	reload: () => Promise<void>;
 }
@@ -12,24 +19,24 @@ interface AuthContextType {
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-	const [userId, setUserId] = useState<string | null>(null);
+	const [user, setUser] = useState<AuthUser | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 
-	const login = (_id: string) => {
-		setUserId(_id);
-	};
-
 	const logout = async () => {
-		await logoutUser();
-		setUserId(null);
+		try {
+			await logoutUser();
+		} finally {
+			setUser(null);
+		}
 	};
 
 	const reload = async () => {
 		try {
-			const res = await sessionUserNow();
-			setUserId(res?.user?.user_id ?? null);
+			const session = await sessionUserNow();
+			const userNow = await getUser(session?.user?._id ?? null);
+			setUser(userNow);
 		} catch {
-			setUserId(null);
+			setUser(null);
 		} finally {
 			setIsLoading(false);
 		}
@@ -44,7 +51,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 	}
 
 	return (
-		<AuthContext value={{ userId, isLoading, login, logout, reload }}>
+		<AuthContext value={{ user, isLoading, logout, reload }}>
 			{children}
 		</AuthContext>
 	);

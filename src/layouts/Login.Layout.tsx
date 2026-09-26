@@ -51,7 +51,7 @@ function LoginLayout() {
 			navigate("/home", { replace: true });
 		};
 
-		void redirectAfterLogin();
+		redirectAfterLogin();
 	}, [state.success, reload, navigate]);
 
 	return (
