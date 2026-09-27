@@ -1,20 +1,24 @@
 import type { ReactNode } from "react";
 import { useFormStatus } from "react-dom";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function SubmitButton({ children }: { children: ReactNode }) {
 	const { pending } = useFormStatus();
 	return (
-		<button
-			className="bg-black rounded-2xl text-white uppercase text-xl py-3 font-bold"
+		<Button
+			variant="contained"
 			type="submit"
 			disabled={pending}
+			aria-busy={pending}
+			sx={{ borderRadius: 2, py: 1.25, fontWeight: 700, display: "flex" }}
 		>
 			{pending ? (
-				<span className="inline-block h-6 w-6 animate-spin rounded-full border-4 border-white border-t-transparent" />
+				<CircularProgress color="inherit" size={22} aria-label="Submitting" />
 			) : (
 				children
 			)}
-		</button>
+		</Button>
 	);
 }
 

@@ -1,11 +1,20 @@
-"use client";
-
 import { useActionState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/Auth.Service";
 import { useAuth } from "../contexts/Auth.Provider";
-import SubmitButton from "../components/ui/button/Submit.Button";
+import {
+	Box,
+	Button,
+	Checkbox,
+	Divider,
+	FormControlLabel,
+	Paper,
+	Stack,
+	TextField,
+	Typography,
+} from "@mui/material";
 import BackButton from "../components/ui/button/Back.Button";
+import SubmitButton from "../components/ui/button/Submit.Button";
 
 type authState = {
 	success: boolean;
@@ -55,68 +64,110 @@ function LoginLayout() {
 	}, [state.success, reload, navigate]);
 
 	return (
-		<main className="flex min-h-screen items-center justify-center bg-black">
-			<form
+		<Box
+			component="main"
+			sx={{
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+				backgroundColor: "#f3f6f4",
+				backgroundImage:
+					"radial-gradient(ellipse at 15% 15%, rgba(0, 128, 128, 0.10), transparent 42%), radial-gradient(ellipse at 85% 85%, rgba(227, 66, 52, 0.08), transparent 38%)",
+				px: 2,
+				py: 5,
+			}}
+		>
+			<Paper
+				component="form"
 				action={action}
-				className="grid grid-cols-1 gap-4 text-2xl border-2 rounded-2xl p-7 bg-white"
+				elevation={0}
+				sx={{
+					width: "100%",
+					maxWidth: 440,
+					p: { xs: 3, sm: 4.5 },
+					border: "1px solid",
+					borderColor: "rgba(20, 40, 35, 0.10)",
+					borderRadius: 3,
+					boxShadow: "0 24px 70px rgba(23, 45, 39, 0.10)",
+				}}
 			>
-				<BackButton />
-				<h1 className="py-7 text-center font-bold uppercase text-4xl">Login</h1>
-				<input
-					className="min-h-full border-2 p-2 rounded-xl"
-					type="email"
-					name="email"
-					placeholder="email"
-				/>
-				<input
-					className="min-h-full border-2 p-2 rounded-xl"
-					type="password"
-					name="password"
-					placeholder="password"
-				/>
-				<label className="flex items-center gap-2 text-lg">
-					<input
-						type="checkbox"
-						name="rememberMe"
-						value={"rememberMe"}
-						className="size-4"
+				<Stack spacing={2}>
+					<BackButton />
+					<Box sx={{ pt: 1, pb: 1 }}>
+						<Typography
+							variant="overline"
+							sx={{ color: "#008080", fontWeight: 800, letterSpacing: 1.2 }}
+						>
+							CYBERSTORE ACCOUNT
+						</Typography>
+						<Typography
+							variant="h4"
+							component="h1"
+							sx={{ mt: 0.25, fontWeight: 750, letterSpacing: 0 }}
+						>
+							Welcome back
+						</Typography>
+						<Typography color="text.secondary" sx={{ mt: 0.75 }}>
+							Sign in to continue to your account.
+						</Typography>
+					</Box>
+					<TextField
+						label="Email"
+						type="email"
+						name="email"
+						autoComplete="email"
+						required
+						fullWidth
 					/>
-					Remember me
-				</label>
-				<SubmitButton>Login</SubmitButton>
+					<TextField
+						label="Password"
+						type="password"
+						name="password"
+						autoComplete="current-password"
+						required
+						fullWidth
+					/>
+					<FormControlLabel
+						control={<Checkbox name="rememberMe" value="rememberMe" />}
+						label="Remember me"
+					/>
+					<SubmitButton>Login</SubmitButton>
 
-				<button
-					className={"text-center text-lg"}
-					type="button"
-					onClick={() =>
-						navigate("/forgot-password", {
-							replace: true,
-						})
-					}
-				>
-					forgot password?
-				</button>
-				<h1 className="text-center">OR</h1>
-				<hr />
-				<span className={"text-lg text-center"}>
-					Don't have account?{" "}
-					<button
-						className={"font-bold"}
+					<Button
+						variant="text"
 						type="button"
 						onClick={() =>
-							navigate("/register", {
+							navigate("/forgot-password", {
 								replace: true,
 							})
 						}
 					>
-						register
-					</button>
-				</span>
-				{state.error && (
-					<p className="text-center text-base text-red-600">{state.error}</p>
-				)}
-			</form>
-		</main>
+						Forgot password?
+					</Button>
+					<Divider>OR</Divider>
+					<Typography align="center">
+						Don't have an account?{" "}
+						<Button
+							variant="text"
+							type="button"
+							onClick={() =>
+								navigate("/register", {
+									replace: true,
+								})
+							}
+							sx={{ fontWeight: 700 }}
+						>
+							Register
+						</Button>
+					</Typography>
+					{state.error && (
+						<Typography color="error" align="center">
+							{state.error}
+						</Typography>
+					)}
+				</Stack>
+			</Paper>
+		</Box>
 	);
 }
 

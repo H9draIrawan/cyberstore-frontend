@@ -1,5 +1,13 @@
-import { FaShoppingCart, FaUser } from "react-icons/fa";
-import { MdFavorite } from "react-icons/md";
+import AppBar from "@mui/material/AppBar";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import PersonIcon from "@mui/icons-material/Person";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/Auth.Provider";
 function Navbar() {
@@ -25,53 +33,84 @@ function Navbar() {
 	const { user, logout } = useAuth();
 
 	return (
-		<nav className="w-full border-b border-slate-200 bg-white px-4 py-3 shadow-sm sm:px-8">
-			<div className="mx-auto flex h-16 items-center gap-6">
-				<NavLink to="/home" className="shrink-0">
+		<AppBar position="static" color="default" elevation={2}>
+			<Toolbar sx={{py : 1}}>
+				<NavLink to="/home" style={{ display: "flex", flexShrink: 0 }}>
 					<img src="/src/assets/logo.png" alt="Logo" width={75} />
 				</NavLink>
-				<div className="flex-1/2 font-sans text-2xl">
-					<ul className="flex justify-center gap-8">
-						{navItems.map((item) => (
-							<li>
-								<NavLink
-									className={({ isActive }) =>
-										isActive ? "font-bold" : "opacity-50 hover:opacity-100"
-									}
-									to={`${item.path}`}
-								>
-									{item.label}
-								</NavLink>
-							</li>
-						))}
-					</ul>
-				</div>
-				<div className="flex flex-1 items-center justify-end gap-8">
+				<Box
+					component="ul"
+					sx={{
+						display: "flex",
+						flex: 1,
+						justifyContent: "center",
+						gap: { xs: 1, sm: 4 },
+						listStyle: "none",
+						m: 0,
+						p: 0,
+					}}
+				>
+					{navItems.map(
+						(item) =>
+							user && (
+								<Box component="li" key={item.path}>
+									<NavLink
+										style={({ isActive }) => ({
+											color: isActive ? "inherit" : "#64748b",
+											fontWeight: isActive ? 700 : 400,
+											textDecoration: "none",
+										})}
+										to={`${item.path}`}
+									>
+										<Typography component="span" variant="h6">
+											{item.label}
+										</Typography>
+									</NavLink>
+								</Box>
+							),
+					)}
+				</Box>
+				<Box
+					sx={{
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "flex-end",
+						gap: { xs: 0.5, sm: 2 },
+					}}
+				>
 					{user ? (
 						<>
-							<MdFavorite className="text-4xl" />
-							<FaShoppingCart className="text-4xl" />
-							<FaUser className="text-4xl" />
-							{user.username}
-							<button
-								type="button"
-								className="rounded-full border border-slate-300 px-5 py-2 font-medium uppercase text-2xl text-white bg-red-500 transition hover:border-red-500 hover:bg-white hover:text-red-500"
-								onClick={logout}
+							<IconButton color="primary">
+								<FavoriteIcon />
+							</IconButton>
+							<IconButton color="primary">
+								<ShoppingCartIcon />
+							</IconButton>
+							<Avatar sx={{ bgcolor: "primary.main" }}>
+								<PersonIcon />
+							</Avatar>
+							<Typography
+								sx={{ display: { xs: "none", md: "block" }, fontWeight: 600 }}
 							>
+								{user.username}
+							</Typography>
+							<Button variant="contained" color="error" onClick={logout}>
 								Logout
-							</button>
+							</Button>
 						</>
 					) : (
-						<NavLink
+						<Button
+							component={NavLink}
 							to="/login"
-							className="rounded-full px-5 py-2 font-medium uppercase text-2xl bg-blue-500 text-white transition border-2 hover:border-blue-500 hover:bg-white hover:text-blue-500"
+							variant="contained"
+							sx={{ fontWeight: 700 }}
 						>
 							Login
-						</NavLink>
+						</Button>
 					)}
-				</div>
-			</div>
-		</nav>
+				</Box>
+			</Toolbar>
+		</AppBar>
 	);
 }
 

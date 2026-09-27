@@ -1,10 +1,12 @@
-import Header from "../components/Header";
+import Navbar from "../components/Navbar";
 import LoginLayout from "../layouts/Login.Layout";
 
 function Login() {
 	return (
 		<>
-			<Header />
+			<header>
+				<Navbar />
+			</header>
 			<LoginLayout />
 		</>
 	);
